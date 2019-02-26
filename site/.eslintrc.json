@@ -22,6 +22,10 @@
       "off",
       "always-multiline"
     ],
+    "newline-after-var": [
+      "error",
+      "always"
+    ],
     "no-new": "off",
     "object-curly-spacing": [
       "error",
