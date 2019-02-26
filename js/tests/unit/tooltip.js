@@ -31,6 +31,7 @@ $(function () {
   QUnit.test('should throw explicit error on undefined method', function (assert) {
     assert.expect(1)
     var $el = $('<div/>')
+
     $el.bootstrapTooltip()
     try {
       $el.bootstrapTooltip('noMethod')
@@ -43,6 +44,7 @@ $(function () {
     assert.expect(2)
     var $el = $('<div/>')
     var $tooltip = $el.bootstrapTooltip()
+
     assert.ok($tooltip instanceof $, 'returns jquery collection')
     assert.strictEqual($tooltip[0], $el[0], 'collection contains element')
   })
@@ -55,12 +57,14 @@ $(function () {
   QUnit.test('should empty title attribute', function (assert) {
     assert.expect(1)
     var $trigger = $('<a href="#" rel="tooltip" title="Another tooltip"/>').bootstrapTooltip()
+
     assert.strictEqual($trigger.attr('title'), '', 'title attribute was emptied')
   })
 
   QUnit.test('should add data attribute for referencing original title', function (assert) {
     assert.expect(1)
     var $trigger = $('<a href="#" rel="tooltip" title="Another tooltip"/>').bootstrapTooltip()
+
     assert.strictEqual($trigger.attr('data-original-title'), 'Another tooltip', 'original title preserved in data attribute')
   })
 
@@ -466,6 +470,7 @@ $(function () {
     var $styles = $(styles).appendTo('head')
 
     var $container = $('<div/>').appendTo('#qunit-fixture')
+
     $('<a href="#" rel="tooltip" title="very very very very very very very very long tooltip in one line"/>')
       .appendTo($container)
       .bootstrapTooltip({
@@ -474,6 +479,7 @@ $(function () {
       })
       .on('inserted.bs.tooltip', function () {
         var $tooltip = $(Tooltip._getInstance(this).tip)
+
         assert.ok($tooltip.hasClass('bs-tooltip-right'))
         assert.ok(typeof $tooltip.attr('style') === 'undefined')
         $styles.remove()
@@ -725,6 +731,7 @@ $(function () {
     var fakeId = 1
     var titleHtml = function () {
       var uid = fakeId
+
       fakeId++
       return '<p id="tt-content">' + uid + '</p><p>' + uid + '</p><p>' + uid + '</p>'
     }
@@ -758,6 +765,7 @@ $(function () {
     var fakeId = 1
     var titleHtml = function () {
       var uid = 'tooltip' + fakeId
+
       fakeId++
       return '<p id="tt-content">' + uid + '</p><p>' + uid + '</p><p>' + uid + '</p>'
     }
@@ -802,6 +810,7 @@ $(function () {
         assert.ok(false, 'should not fire any tooltip events')
       })
       .bootstrapTooltip('hide')
+
     assert.ok(Tooltip._getInstance($tooltip[0]) === null, 'should not initialize the tooltip')
   })
 
@@ -955,6 +964,7 @@ $(function () {
       .on('hidden.bs.tooltip', function () {
         var tooltip = Tooltip._getInstance($el[0])
         var $tooltip = $(tooltip.getTipElement())
+
         assert.ok($tooltip.hasClass('tooltip'))
         assert.ok($tooltip.hasClass('fade'))
         done()
@@ -971,6 +981,7 @@ $(function () {
       .on('shown.bs.tooltip', function () {
         var tooltip = Tooltip._getInstance($el[0])
         var $tooltip = $(tooltip.getTipElement())
+
         assert.strictEqual($tooltip.children().text(), '7')
         done()
       })
@@ -1007,10 +1018,12 @@ $(function () {
       .bootstrapTooltip()
 
     var tooltip = Tooltip._getInstance($tooltip[0])
+
     tooltip.show()
     assert.ok(tooltip._popper)
 
     var spyPopper = sinon.spy(tooltip._popper, 'scheduleUpdate')
+
     tooltip.update()
     assert.ok(spyPopper.called)
   })
@@ -1023,6 +1036,7 @@ $(function () {
       .bootstrapTooltip()
 
     var tooltip = Tooltip._getInstance($tooltip[0])
+
     tooltip.update()
 
     assert.ok(tooltip._popper === null)
@@ -1039,6 +1053,7 @@ $(function () {
       .appendTo('#qunit-fixture')
 
     var tooltip = Tooltip._getInstance($tooltip[0])
+
     tooltip.tip = null
 
     tooltip._handlePopperPlacementChange({
@@ -1118,6 +1133,7 @@ $(function () {
       })
 
     var tooltip = Tooltip._getInstance($trigger[0])
+
     assert.strictEqual(tooltip.config.sanitize, false)
   })
 
@@ -1136,6 +1152,7 @@ $(function () {
       })
 
     var tooltip = Tooltip._getInstance($trigger[0])
+
     assert.strictEqual(tooltip.config.template.indexOf('script'), -1)
   })
 
@@ -1153,6 +1170,7 @@ $(function () {
       })
 
     var tooltip = Tooltip._getInstance($trigger[0])
+
     assert.strictEqual(tooltip.config.template.indexOf('onError'), -1)
   })
 
@@ -1229,6 +1247,7 @@ $(function () {
       })
 
     var tooltip = Tooltip._getInstance($trigger[0])
+
     tooltip.setElementContent($element[0], content)
 
     assert.strictEqual($element[0].innerHTML, content)

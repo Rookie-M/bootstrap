@@ -21,6 +21,7 @@ $(function () {
     $('<input type="checkbox" /> <button class="btn"></button>').appendTo('#qunit-fixture')
 
     var btn = $('.btn').first()[0]
+
     assert.strictEqual(SelectorEngine.find($('.btn')), null)
     assert.equal(SelectorEngine.find('.btn')[0], btn)
     assert.equal(SelectorEngine.find('.btn', $('#qunit-fixture')[0])[0], btn)
@@ -31,6 +32,7 @@ $(function () {
     $('<button class="btn">btn1</button> <button class="btn">btn2</button>').appendTo('#qunit-fixture')
 
     var btn = $('.btn').first()[0]
+
     assert.strictEqual(SelectorEngine.findOne($('.btn')), null)
     assert.equal(SelectorEngine.findOne('.btn'), btn)
     assert.equal(SelectorEngine.findOne('.btn', $('#qunit-fixture')[0]), btn)

@@ -302,6 +302,7 @@ class Dropdown {
 
   _getPlacement() {
     const parentDropdown = this._element.parentNode
+
     let placement = AttachmentMap.BOTTOM
 
     // Handle dropup
@@ -400,6 +401,7 @@ class Dropdown {
     }
 
     const toggles = makeArray(SelectorEngine.find(Selector.DATA_TOGGLE))
+
     for (let i = 0, len = toggles.length; i < len; i++) {
       const parent = Dropdown._getParentFromElement(toggles[i])
       const context = Data.getData(toggles[i], DATA_KEY)
@@ -416,6 +418,7 @@ class Dropdown {
       }
 
       const dropdownMenu = context._menu
+
       if (!parent.classList.contains(ClassName.SHOW)) {
         continue
       }
@@ -428,6 +431,7 @@ class Dropdown {
       }
 
       const hideEvent = EventHandler.trigger(parent, Event.HIDE, relatedTarget)
+
       if (hideEvent.defaultPrevented) {
         continue
       }
@@ -547,6 +551,7 @@ EventHandler
 
 if (typeof $ !== 'undefined') {
   const JQUERY_NO_CONFLICT = $.fn[NAME]
+
   $.fn[NAME] = Dropdown._jQueryInterface
   $.fn[NAME].Constructor = Dropdown
   $.fn[NAME].noConflict = () => {

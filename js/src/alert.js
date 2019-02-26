@@ -68,6 +68,7 @@ class Alert {
 
   close(element) {
     let rootElement = this._element
+
     if (element) {
       rootElement = this._getRootElement(element)
     }
@@ -90,6 +91,7 @@ class Alert {
 
   _getRootElement(element) {
     const selector = getSelectorFromElement(element)
+
     let parent = false
 
     if (selector) {
@@ -178,6 +180,7 @@ EventHandler
 
 if (typeof $ !== 'undefined') {
   const JQUERY_NO_CONFLICT = $.fn[NAME]
+
   $.fn[NAME] = Alert._jQueryInterface
   $.fn[NAME].Constructor = Alert
   $.fn[NAME].noConflict = () => {

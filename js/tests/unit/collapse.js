@@ -30,6 +30,7 @@ $(function () {
   QUnit.test('should throw explicit error on undefined method', function (assert) {
     assert.expect(1)
     var $el = $('<div/>')
+
     $el.bootstrapCollapse()
     try {
       $el.bootstrapCollapse('noMethod')
@@ -42,6 +43,7 @@ $(function () {
     assert.expect(2)
     var $el = $('<div/>')
     var $collapse = $el.bootstrapCollapse()
+
     assert.ok($collapse instanceof $, 'returns jquery collection')
     assert.strictEqual($collapse[0], $el[0], 'collection contains element')
   })
@@ -64,6 +66,7 @@ $(function () {
     var $target = $('<a role="button" data-toggle="collapse" class="collapsed" href=".multi"/>').appendTo('#qunit-fixture')
     var $el = $('<div class="collapse multi"/>').appendTo('#qunit-fixture')
     var $el2 = $('<div class="collapse multi"/>').appendTo('#qunit-fixture')
+
     $el.one('shown.bs.collapse', function () {
       assert.ok($el.hasClass('show'), 'has class "show"')
       assert.ok(!/height/i.test($el.attr('style')), 'has height reset')
@@ -91,9 +94,11 @@ $(function () {
       '</div>',
       '</div>'
     ].join('')
+
     $(html).appendTo('#qunit-fixture')
     var $el1 = $('#collapse1')
     var $el2 = $('#collapse2')
+
     $el1.one('shown.bs.collapse', function () {
       assert.ok($el1.hasClass('show'))
       assert.ok($el2.hasClass('show'))
@@ -534,6 +539,7 @@ $(function () {
     var $triggerTwo = $('#linkTriggerTwo')
     var $collapseOne = $('#collapseOne')
     var $collapseTwo = $('#collapseTwo')
+
     $collapseOne.on('shown.bs.collapse', function () {
       assert.ok($collapseOne.hasClass('show'), '#collapseOne is shown')
       assert.ok(!$collapseTwo.hasClass('show'), '#collapseTwo is not shown')
@@ -665,6 +671,7 @@ $(function () {
   QUnit.test('should collapse accordion children but not nested accordion children', function (assert) {
     assert.expect(9)
     var done = assert.async()
+
     $('<div id="accordion">' +
         '<div class="item">' +
         '<a id="linkTrigger" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"></a>' +
@@ -813,6 +820,7 @@ $(function () {
     $collapse[0].addEventListener('shown.bs.collapse', function () {
       assert.ok($target.prop('checked'), '$trigger is checked')
       var $testCheckbox = $('#testCheckbox')
+
       $testCheckbox.trigger($.Event('click'))
       setTimeout(function () {
         assert.ok($testCheckbox.prop('checked'), '$testCheckbox is checked too')
@@ -884,6 +892,7 @@ $(function () {
 
     var $parent = $('.my-collapse')
     var $collapse2 = $('#collapse2')
+
     $parent.find('.collapse').bootstrapCollapse({
       parent: $parent,
       toggle: false

@@ -31,6 +31,7 @@ $(function () {
   QUnit.test('should throw explicit error on undefined method', function (assert) {
     assert.expect(1)
     var $el = $('<div/>')
+
     $el.bootstrapPopover()
     try {
       $el.bootstrapPopover('noMethod')
@@ -43,6 +44,7 @@ $(function () {
     assert.expect(2)
     var $el = $('<div/>')
     var $popover = $el.bootstrapPopover()
+
     assert.ok($popover instanceof $, 'returns jquery collection')
     assert.strictEqual($popover[0], $el[0], 'collection contains element')
   })
@@ -50,6 +52,7 @@ $(function () {
   QUnit.test('should render popover element', function (assert) {
     assert.expect(2)
     var done = assert.async()
+
     $('<a href="#" title="mdo" data-content="https://twitter.com/mdo">@mdo</a>')
       .appendTo('#qunit-fixture')
       .on('shown.bs.popover', function () {
@@ -296,6 +299,7 @@ $(function () {
     var $content = $('<div class="content-with-handler"><a class="btn btn-warning">Button with event handler</a></div>').appendTo('#qunit-fixture')
 
     var handlerCalled = false
+
     $('.content-with-handler .btn').on('click', function () {
       handlerCalled = true
     })
@@ -313,6 +317,7 @@ $(function () {
       })
 
     var done = assert.async()
+
     $div
       .one('shown.bs.popover', function () {
         $div
@@ -340,6 +345,7 @@ $(function () {
         assert.ok(false, 'should not fire any popover events')
       })
       .bootstrapPopover('hide')
+
     assert.ok(Popover._getInstance($popover[0]) === null, 'should not initialize the popover')
   })
 
@@ -450,6 +456,7 @@ $(function () {
     assert.expect(1)
     var done = assert.async()
     var nbCall = 0
+
     $('<div id="popover" style="display:none">content</div>').appendTo('#qunit-fixture')
     var $popover = $('<a href="#">@Johann-S</a>')
       .appendTo('#qunit-fixture')

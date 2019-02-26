@@ -406,6 +406,7 @@ class Modal {
 
       if (this._element.classList.contains(ClassName.FADE)) {
         const backdropTransitionDuration = getTransitionDurationFromElement(this._backdrop)
+
         EventHandler.one(this._backdrop, TRANSITION_END, callbackRemove)
         emulateTransitionEnd(this._backdrop, backdropTransitionDuration)
       } else {
@@ -441,6 +442,7 @@ class Modal {
 
   _checkScrollbar() {
     const rect = document.body.getBoundingClientRect()
+
     this._isBodyOverflowing = rect.left + rect.right < window.innerWidth
     this._scrollbarWidth = this._getScrollbarWidth()
   }
@@ -455,6 +457,7 @@ class Modal {
         .forEach(element => {
           const actualPadding = element.style.paddingRight
           const calculatedPadding = window.getComputedStyle(element)['padding-right']
+
           Manipulator.setDataAttribute(element, 'padding-right', actualPadding)
           element.style.paddingRight = `${parseFloat(calculatedPadding) + this._scrollbarWidth}px`
         })
@@ -464,6 +467,7 @@ class Modal {
         .forEach(element => {
           const actualMargin = element.style.marginRight
           const calculatedMargin = window.getComputedStyle(element)['margin-right']
+
           Manipulator.setDataAttribute(element, 'margin-right', actualMargin)
           element.style.marginRight = `${parseFloat(calculatedMargin) - this._scrollbarWidth}px`
         })
@@ -484,6 +488,7 @@ class Modal {
     makeArray(SelectorEngine.find(Selector.FIXED_CONTENT))
       .forEach(element => {
         const padding = Manipulator.getDataAttribute(element, 'padding-right')
+
         if (typeof padding !== 'undefined') {
           Manipulator.removeDataAttribute(element, 'padding-right')
           element.style.paddingRight = padding
@@ -494,6 +499,7 @@ class Modal {
     makeArray(SelectorEngine.find(`${Selector.STICKY_CONTENT}`))
       .forEach(element => {
         const margin = Manipulator.getDataAttribute(element, 'margin-right')
+
         if (typeof margin !== 'undefined') {
           Manipulator.removeDataAttribute(element, 'margin-right')
           element.style.marginRight = margin
@@ -502,6 +508,7 @@ class Modal {
 
     // Restore body padding
     const padding = Manipulator.getDataAttribute(document.body, 'padding-right')
+
     if (typeof padding === 'undefined') {
       document.body.style.paddingRight = ''
     } else {
@@ -512,9 +519,11 @@ class Modal {
 
   _getScrollbarWidth() { // thx d.walsh
     const scrollDiv = document.createElement('div')
+
     scrollDiv.className = ClassName.SCROLLBAR_MEASURER
     document.body.appendChild(scrollDiv)
     const scrollbarWidth = scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth
+
     document.body.removeChild(scrollDiv)
     return scrollbarWidth
   }
@@ -589,6 +598,7 @@ EventHandler.on(document, Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (
   })
 
   let data = Data.getData(target, DATA_KEY)
+
   if (!data) {
     data = new Modal(target, config)
   }
@@ -604,6 +614,7 @@ EventHandler.on(document, Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (
 
 if (typeof $ !== 'undefined') {
   const JQUERY_NO_CONFLICT = $.fn[NAME]
+
   $.fn[NAME] = Modal._jQueryInterface
   $.fn[NAME].Constructor = Modal
   $.fn[NAME].noConflict = () => {

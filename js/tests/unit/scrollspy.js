@@ -30,6 +30,7 @@ $(function () {
   QUnit.test('should throw explicit error on undefined method', function (assert) {
     assert.expect(1)
     var $el = $('<div/>').appendTo('#qunit-fixture')
+
     $el.bootstrapScrollspy()
     try {
       $el.bootstrapScrollspy('noMethod')
@@ -42,6 +43,7 @@ $(function () {
     assert.expect(2)
     var $el = $('<div/>').appendTo('#qunit-fixture')
     var $scrollspy = $el.bootstrapScrollspy()
+
     assert.ok($scrollspy instanceof $, 'returns jquery collection')
     assert.strictEqual($scrollspy[0], $el[0], 'collection contains element')
   })
@@ -204,6 +206,7 @@ $(function () {
     var testElementIsActiveAfterScroll = function (element, target) {
       var deferred = $.Deferred()
       var scrollHeight = Math.ceil($content.scrollTop() + $(target).position().top)
+
       $content.one('scroll', function () {
         assert.ok($(element).hasClass('active'), 'target:' + target + ', element' + element)
         deferred.resolve()
@@ -248,6 +251,7 @@ $(function () {
     var testElementIsActiveAfterScroll = function (element, target) {
       var deferred = $.Deferred()
       var scrollHeight = Math.ceil($content.scrollTop() + $(target).position().top)
+
       $content.one('scroll', function () {
         assert.ok($(element).hasClass('active'), 'target:' + target + ', element' + element)
         deferred.resolve()
@@ -292,6 +296,7 @@ $(function () {
     var testElementIsActiveAfterScroll = function (element, target) {
       var deferred = $.Deferred()
       var scrollHeight = Math.ceil($content.scrollTop() + $(target).position().top)
+
       $content.one('scroll', function () {
         assert.ok($(element).hasClass('active'), 'target:' + target + ', element' + element)
         deferred.resolve()
@@ -502,6 +507,7 @@ $(function () {
         '<li class="nav-item"><a id="three-link" class="nav-link" href="#three">Three</a></li>' +
         '</ul>' +
         '</nav>'
+
     $(sectionHTML).appendTo('#qunit-fixture')
 
     var scrollspyHTML = '<div id="content" style="height: 200px; overflow-y: auto;">' +
@@ -543,6 +549,7 @@ $(function () {
         '<li class="nav-item"><a id="three-link" class="nav-link" href="#three">Three</a></li>' +
         '</ul>' +
         '</nav>'
+
     $(sectionHTML).appendTo('#qunit-fixture')
 
     var negativeHeight = -10
@@ -607,6 +614,7 @@ $(function () {
     var testElementIsActiveAfterScroll = function (element, target) {
       var deferred = $.Deferred()
       var scrollHeight = Math.ceil($content.scrollTop() + $(target).position().top)
+
       $content.one('scroll', function () {
         assert.ok($(element).hasClass('active'), 'target:' + target + ', element: ' + element)
         deferred.resolve()
@@ -616,6 +624,7 @@ $(function () {
     }
 
     var done = assert.async()
+
     $.when(testElementIsActiveAfterScroll('#li-100-5', '#div-100-5'))
       .then(function () {
         return testElementIsActiveAfterScroll('#li-100-4', '#div-100-4')

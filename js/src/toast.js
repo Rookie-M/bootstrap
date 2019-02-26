@@ -229,6 +229,7 @@ class Toast {
 
 if (typeof $ !== 'undefined') {
   const JQUERY_NO_CONFLICT = $.fn[NAME]
+
   $.fn[NAME] = Toast._jQueryInterface
   $.fn[NAME].Constructor = Toast
   $.fn[NAME].noConflict = () => {

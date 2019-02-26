@@ -30,6 +30,7 @@ $(function () {
   QUnit.test('should throw explicit error on undefined method', function (assert) {
     assert.expect(1)
     var $el = $('<div/>')
+
     $el.appendTo('#qunit-fixture')
     $el.bootstrapDropdown()
     try {
@@ -42,8 +43,10 @@ $(function () {
   QUnit.test('should return jquery collection containing the element', function (assert) {
     assert.expect(2)
     var $el = $('<div/>')
+
     $el.appendTo('#qunit-fixture')
     var $dropdown = $el.bootstrapDropdown()
+
     assert.ok($dropdown instanceof $, 'returns jquery collection')
     assert.strictEqual($dropdown[0], $el[0], 'collection contains element')
   })
@@ -62,8 +65,10 @@ $(function () {
         '</div>' +
         '</div>' +
         '</div>'
+
     $(dropdownHTML).appendTo('#qunit-fixture')
     var $dropdown = $('#qunit-fixture').find('[data-toggle="dropdown"]').bootstrapDropdown()
+
     $dropdown.on('click', function () {
       assert.ok(!$dropdown.parent('.dropdown').hasClass('show'))
       done()
@@ -84,6 +89,7 @@ $(function () {
         '</div>' +
         '</div>'
     var $dropdown = $(dropdownHTML).find('[data-toggle="dropdown"]').bootstrapDropdown()
+
     $dropdown
       .parent('.dropdown')
       .on('shown.bs.dropdown', function () {
@@ -106,6 +112,7 @@ $(function () {
         '</div>' +
         '</div>'
     var $dropdown = $(dropdownHTML).find('[data-toggle="dropdown"]').bootstrapDropdown()
+
     $dropdown
       .parent('.dropdown')
       .on('shown.bs.dropdown', function () {
@@ -190,6 +197,7 @@ $(function () {
 
     $(dropdownHTML).appendTo('#qunit-fixture')
     var $dropdown = $('#qunit-fixture').find('[data-toggle="dropdown"]').bootstrapDropdown()
+
     $dropdown.on('click', function () {
       assert.ok(!$dropdown.parent('.dropdown').hasClass('show'))
       done()
@@ -274,12 +282,14 @@ $(function () {
       .appendTo('#qunit-fixture')
       .find('[data-toggle="dropdown"]')
       .bootstrapDropdown()
+
     $dropdown
       .parent('.dropdown')
       .on('shown.bs.dropdown', function () {
         assert.ok($dropdown.parent('.dropdown').hasClass('show'), '"show" class added on click')
 
         var keyup9 = new Event('keyup')
+
         keyup9.which = 9 // Tab
         document.dispatchEvent(keyup9)
       })
@@ -366,6 +376,7 @@ $(function () {
         assert.strictEqual($first.parents('.show').length, 1, '"show" class added on click')
         assert.strictEqual($('#qunit-fixture .dropdown-menu.show').length, 1, 'only one dropdown is shown')
         var keyup = new Event('keyup')
+
         keyup.which = 9 // Tab
         document.dispatchEvent(keyup)
       }).on('hidden.bs.dropdown', function () {
@@ -378,6 +389,7 @@ $(function () {
         assert.strictEqual($last.parent('.show').length, 1, '"show" class added on click')
         assert.strictEqual($('#qunit-fixture .dropdown-menu.show').length, 1, 'only one dropdown is shown')
         var keyup = new Event('keyup')
+
         keyup.which = 9 // Tab
         document.dispatchEvent(keyup)
       }).on('hidden.bs.dropdown', function () {
@@ -549,6 +561,7 @@ $(function () {
         assert.ok(true, 'shown was fired')
 
         var keyDown = new Event('keydown')
+
         keyDown.which = 27
         $dropdown[0].dispatchEvent(keyDown)
       })
@@ -660,6 +673,7 @@ $(function () {
         assert.ok(true, 'shown was fired')
 
         var keydown40 = new Event('keydown')
+
         keydown40.which = 40
         $dropdown[0].dispatchEvent(keydown40)
         assert.ok($(document.activeElement).is($('#item1')), 'item1 is focused')
@@ -670,6 +684,7 @@ $(function () {
         assert.ok($(document.activeElement).is($('#item2')), 'item2 is focused')
 
         var keydown38 = new Event('keydown')
+
         keydown38.which = 38
         document.activeElement.dispatchEvent(keydown38)
         assert.ok($(document.activeElement).is($('#item1')), 'item1 is focused')
@@ -693,6 +708,7 @@ $(function () {
       .bootstrapDropdown()
 
     var $textfield = $('#textField')
+
     $textfield.on('click', function () {
       assert.ok($dropdown.parent('.dropdown').hasClass('show'), 'dropdown menu is shown')
       done()
@@ -722,6 +738,7 @@ $(function () {
       .bootstrapDropdown()
 
     var $textarea = $('#textArea')
+
     $textarea.on('click', function () {
       assert.ok($dropdown.parent('.dropdown').hasClass('show'), 'dropdown menu is shown')
       done()
@@ -826,6 +843,7 @@ $(function () {
         // Key escape
         $input.trigger('focus')
         var keydown = new Event('keydown')
+
         keydown.which = 27
         $input[0].dispatchEvent(keydown)
 
@@ -875,6 +893,7 @@ $(function () {
         // Key escape
         $input.trigger('focus')
         var keydown = new Event('keydown')
+
         keydown.which = 27
         $input[0].dispatchEvent(keydown)
         assert.ok(!$dropdown.parent('.dropdown').hasClass('show'), 'dropdown menu is not shown')
@@ -887,6 +906,7 @@ $(function () {
             // Key down
             $input.trigger('focus')
             var keydown40 = new Event('keydown')
+
             keydown40.which = 40
             $input[0].dispatchEvent(keydown40)
             assert.ok(document.activeElement === $('#item1')[0], 'item1 is focused')
@@ -897,6 +917,7 @@ $(function () {
                 // Key up
                 $input.trigger('focus')
                 var keydown38 = new Event('keydown')
+
                 keydown38.which = 38
                 $input[0].dispatchEvent(keydown38)
 
@@ -953,6 +974,7 @@ $(function () {
         // Key escape
         $textarea.trigger('focus')
         var keydown27 = new Event('keydown')
+
         keydown27.which = 27
         $textarea[0].dispatchEvent(keydown27)
         assert.ok(!$dropdown.parent('.dropdown').hasClass('show'), 'dropdown menu is not shown')
@@ -965,6 +987,7 @@ $(function () {
             // Key down
             $textarea.trigger('focus')
             var keydown40 = new Event('keydown')
+
             keydown40.which = 40
             $textarea[0].dispatchEvent(keydown40)
             assert.ok(document.activeElement === $('#item1')[0], 'item1 is focused')
@@ -975,6 +998,7 @@ $(function () {
                 // Key up
                 $textarea.trigger('focus')
                 var keydown38 = new Event('keydown')
+
                 keydown38.which = 38
                 $textarea[0].dispatchEvent(keydown38)
 
@@ -1038,11 +1062,13 @@ $(function () {
       .bootstrapDropdown()
 
     var dropdown = Dropdown._getInstance($dropdown[0])
+
     dropdown.toggle()
     assert.ok(dropdown._popper)
 
     var spyPopper = sinon.spy(dropdown._popper, 'scheduleUpdate')
     var spyDetectNavbar = sinon.spy(dropdown, '_detectNavbar')
+
     dropdown.update()
 
     assert.ok(spyPopper.called)
@@ -1091,6 +1117,7 @@ $(function () {
       .bootstrapDropdown()
 
     var dropdown = Dropdown._getInstance($dropdown[0])
+
     dropdown.toggle()
 
     assert.ok(dropdown._popper)
@@ -1185,6 +1212,7 @@ $(function () {
       .bootstrapDropdown()
 
     var dropdown = Dropdown._getInstance($dropdown[0])
+
     $dropdown.trigger('click')
     dropdown.show()
 
@@ -1208,6 +1236,7 @@ $(function () {
       .bootstrapDropdown()
 
     var dropdown = Dropdown._getInstance($dropdown[0])
+
     dropdown.hide()
     assert.ok(!$dropdown.parent('.dropdown').hasClass('show'), 'dropdown menu is still hidden')
   })
@@ -1316,8 +1345,10 @@ $(function () {
         '    <a class="dropdown-item" href="#">Another link</a>' +
         '  </div>' +
         '</div>'
+
     $(dropdownHTML).appendTo('#qunit-fixture')
     var $dropdown = $('#qunit-fixture').find('[data-toggle="dropdown"]').bootstrapDropdown()
+
     $dropdown.show()
     assert.ok(!$dropdown.parent('.dropdown').hasClass('show'))
   })
@@ -1334,6 +1365,7 @@ $(function () {
 
     $(dropdownHTML).appendTo('#qunit-fixture')
     var $dropdown = $('#qunit-fixture').find('[data-toggle="dropdown"]').bootstrapDropdown()
+
     $dropdown.show()
     assert.ok(!$dropdown.parent('.dropdown').hasClass('show'))
   })
@@ -1347,8 +1379,10 @@ $(function () {
         '    <a class="dropdown-item" href="#">Another link</a>' +
         '  </div>' +
         '</div>'
+
     $(dropdownHTML).appendTo('#qunit-fixture')
     var $dropdown = $('#qunit-fixture').find('[data-toggle="dropdown"]').bootstrapDropdown()
+
     $dropdown.hide()
     assert.ok($dropdown.parent('.dropdown').hasClass('show'))
   })
@@ -1365,6 +1399,7 @@ $(function () {
 
     $(dropdownHTML).appendTo('#qunit-fixture')
     var $dropdown = $('#qunit-fixture').find('[data-toggle="dropdown"]').bootstrapDropdown()
+
     $dropdown.hide()
     assert.ok($dropdown.parent('.dropdown').hasClass('show'))
   })

@@ -42,6 +42,7 @@ $(function () {
   QUnit.test('should throw explicit error on undefined method', function (assert) {
     assert.expect(1)
     var $el = $('<div id="modal-test"><div class="modal-dialog" /></div>')
+
     $el.bootstrapModal()
     try {
       $el.bootstrapModal('noMethod')
@@ -54,6 +55,7 @@ $(function () {
     assert.expect(2)
     var $el = $('<div id="modal-test"><div class="modal-dialog" /></div>')
     var $modal = $el.bootstrapModal()
+
     assert.ok($modal instanceof $, 'returns jquery collection')
     assert.strictEqual($modal[0], $el[0], 'collection contains element')
   })
@@ -140,6 +142,7 @@ $(function () {
   QUnit.test('should remove from dom when click [data-dismiss="modal"]', function (assert) {
     assert.expect(3)
     var done = assert.async()
+
     $('<div id="modal-test"><div class="modal-dialog" /><span class="close" data-dismiss="modal"/></div>')
       .on('shown.bs.modal', function () {
         assert.ok($('#modal-test').is(':visible'), 'modal visible')
@@ -205,12 +208,14 @@ $(function () {
     var done = assert.async()
 
     var $div = $('<div id="modal-test"><div class="modal-dialog" /></div>')
+
     $div
       .on('shown.bs.modal', function () {
         assert.ok($('#modal-test').length, 'modal inserted into dom')
         assert.ok($('#modal-test').is(':visible'), 'modal visible')
 
         var evt = document.createEvent('HTMLEvents')
+
         evt.initEvent('keydown', true, true)
         evt.which = 27
 
@@ -230,6 +235,7 @@ $(function () {
     var done = assert.async()
 
     var $div = $('<div id="modal-test"><div class="modal-dialog" /></div>')
+
     $div
       .on('shown.bs.modal', function () {
         assert.ok($('#modal-test').length, 'modal inserted into dom')
@@ -320,6 +326,7 @@ $(function () {
         assert.ok(!$('#modal-test').is(':visible'), 'modal hidden')
 
         var $this = $(this)
+
         setTimeout(function () {
           $this
             .one('shown.bs.modal', function () {
@@ -405,6 +412,7 @@ $(function () {
       .on('shown.bs.modal', function () {
         var expectedPadding = parseInt($(this).getScrollbarWidth(), 10)
         var currentPadding = parseInt($(this).css('padding-right'), 10)
+
         assert.strictEqual(currentPadding, expectedPadding, 'modal padding should be adjusted while opening')
         done()
       })
@@ -420,6 +428,7 @@ $(function () {
     $('<div id="modal-test"><div class="modal-dialog" /></div>')
       .on('hidden.bs.modal', function () {
         var currentPadding = parseInt($body.css('padding-right'), 10)
+
         assert.strictEqual(currentPadding, originalPadding, 'body padding should be reset after closing')
         $body.removeAttr('style')
         done()
@@ -427,6 +436,7 @@ $(function () {
       .on('shown.bs.modal', function () {
         var expectedPadding = parseInt(originalPadding, 10) + parseInt($(this).getScrollbarWidth(), 10)
         var currentPadding = parseInt($body.css('padding-right'), 10)
+
         assert.strictEqual(currentPadding, expectedPadding, 'body padding should be adjusted while opening')
         $(this).bootstrapModal('hide')
       })
@@ -438,6 +448,7 @@ $(function () {
     var done = assert.async()
     var $body = $(document.body)
     var originalPadding = '0px'
+
     $body.css('padding-right', originalPadding)
 
     $('<div id="modal-test"><div class="modal-dialog" /></div>')
@@ -466,6 +477,7 @@ $(function () {
     $('<div id="modal-test"><div class="modal-dialog" /></div>')
       .on('shown.bs.modal', function () {
         var currentPadding = $body.css('padding-right')
+
         assert.strictEqual(currentPadding, originalPadding, 'body padding should not be adjusted')
         $(this).bootstrapModal('hide')
 
@@ -486,6 +498,7 @@ $(function () {
     $('<div id="modal-test"><div class="modal-dialog" /></div>')
       .on('hidden.bs.modal', function () {
         var currentPadding = parseInt($element.css('padding-right'), 10)
+
         assert.strictEqual(currentPadding, originalPadding, 'fixed element padding should be reset after closing')
         $element.remove()
         done()
@@ -493,6 +506,7 @@ $(function () {
       .on('shown.bs.modal', function () {
         var expectedPadding = parseFloat(originalPadding) + parseInt($(this).getScrollbarWidth(), 10)
         var currentPadding = parseInt($element.css('padding-right'), 10)
+
         assert.strictEqual(currentPadding, expectedPadding, 'fixed element padding should be adjusted while opening')
         $(this).bootstrapModal('hide')
       })
@@ -504,6 +518,7 @@ $(function () {
     var done = assert.async()
     var $element = $('<div class="fixed-top"></div>').appendTo('#qunit-fixture')
     var originalPadding = '0px'
+
     $element.css('padding-right', originalPadding)
 
     $('<div id="modal-test"><div class="modal-dialog" /></div>')
@@ -528,6 +543,7 @@ $(function () {
     $('<div id="modal-test"><div class="modal-dialog" /></div>')
       .on('hidden.bs.modal', function () {
         var currentPadding = parseInt($element.css('margin-right'), 10)
+
         assert.strictEqual(currentPadding, originalPadding, 'sticky element margin should be reset after closing')
         $element.remove()
         done()
@@ -535,6 +551,7 @@ $(function () {
       .on('shown.bs.modal', function () {
         var expectedPadding = parseFloat(originalPadding) - $(this).getScrollbarWidth()
         var currentPadding = parseInt($element.css('margin-right'), 10)
+
         assert.strictEqual(currentPadding, expectedPadding, 'sticky element margin should be adjusted while opening')
         $(this).bootstrapModal('hide')
       })
@@ -546,6 +563,7 @@ $(function () {
     var done = assert.async()
     var $element = $('<div class="sticky-top"></div>').appendTo('#qunit-fixture')
     var originalPadding = '0px'
+
     $element.css('margin-right', originalPadding)
 
     $('<div id="modal-test"><div class="modal-dialog" /></div>')
@@ -762,6 +780,7 @@ $(function () {
       document.addEventListener('focusin', focusInListener)
 
       var focusInEvent = new Event('focusin')
+
       Object.defineProperty(focusInEvent, 'target', {
         value: $('#qunit-fixture')[0]
       })
@@ -788,6 +807,7 @@ $(function () {
     ].join('')).appendTo('#qunit-fixture')
 
     var $modalBody = $('.modal-body')
+
     $modalBody.scrollTop(100)
     assert.strictEqual($modalBody.scrollTop(), 100)
 

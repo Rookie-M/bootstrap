@@ -68,6 +68,7 @@
 
   // Modal relatedTarget demo
   var exampleModal = document.getElementById('exampleModal')
+
   if (exampleModal) {
     exampleModal.addEventListener('show.bs.modal', function (event) {
       var button = event.relatedTarget // Button that triggered the modal
@@ -96,6 +97,7 @@
 
   // Insert copy to clipboard button before .highlight
   var btnHtml = '<div class="bd-clipboard"><button type="button" class="btn-clipboard" title="Copy to clipboard">Copy</button></div>'
+
   makeArray(document.querySelectorAll('figure.highlight, div.highlight'))
     .forEach(function (element) {
       element.insertAdjacentHTML('beforebegin', btnHtml)

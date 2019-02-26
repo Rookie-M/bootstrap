@@ -134,6 +134,7 @@ class ScrollSpy {
 
         if (target) {
           const targetBCR = target.getBoundingClientRect()
+
           if (targetBCR.width || targetBCR.height) {
             // TODO (fat): remove sketch reliance on jQuery position/offset
             return [
@@ -177,6 +178,7 @@ class ScrollSpy {
 
     if (typeof config.target !== 'string') {
       let { id } = config.target
+
       if (!id) {
         id = getUID(NAME)
         config.target.id = id
@@ -235,6 +237,7 @@ class ScrollSpy {
     }
 
     const offsetLength = this._offsets.length
+
     for (let i = offsetLength; i--;) {
       const isActiveTarget = this._activeTarget !== this._targets[i] &&
           scrollTop >= this._offsets[i] &&
@@ -340,6 +343,7 @@ EventHandler.on(window, Event.LOAD_DATA_API, () => {
 
 if (typeof $ !== 'undefined') {
   const JQUERY_NO_CONFLICT = $.fn[NAME]
+
   $.fn[NAME] = ScrollSpy._jQueryInterface
   $.fn[NAME].Constructor = ScrollSpy
   $.fn[NAME].noConflict = () => {

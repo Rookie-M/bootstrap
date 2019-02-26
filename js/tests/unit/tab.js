@@ -28,6 +28,7 @@ $(function () {
   QUnit.test('should throw explicit error on undefined method', function (assert) {
     assert.expect(1)
     var $el = $('<div/>')
+
     $el.bootstrapTab()
     try {
       $el.bootstrapTab('noMethod')
@@ -40,6 +41,7 @@ $(function () {
     assert.expect(2)
     var $el = $('<div/>')
     var $tab = $el.bootstrapTab()
+
     assert.ok($tab instanceof $, 'returns jquery collection')
     assert.strictEqual($tab[0], $el[0], 'collection contains element')
   })
@@ -456,6 +458,7 @@ $(function () {
 
     $('#btnClose').one('click', function () {
       var tabId = $(this).parents('a').attr('href')
+
       $(this).parents('li').remove()
       $(tabId).remove()
       $('.nav-tabs a:last').bootstrapTab('show')

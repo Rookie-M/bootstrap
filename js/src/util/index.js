@@ -80,6 +80,7 @@ const emulateTransitionEnd = (element, duration) => {
   let called = false
   const durationPadding = 5
   const emulatedDuration = duration + durationPadding
+
   function listener() {
     called = true
     element.removeEventListener(TRANSITION_END, listener)
@@ -140,6 +141,7 @@ const findShadowRoot = element => {
   // Can find the shadow root otherwise it'll return the document
   if (typeof element.getRootNode === 'function') {
     const root = element.getRootNode()
+
     return root instanceof ShadowRoot ? root : null
   }
 

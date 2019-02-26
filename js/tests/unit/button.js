@@ -31,6 +31,7 @@ $(function () {
     assert.expect(2)
     var $el = $('<div/>')
     var $button = $el.bootstrapButton()
+
     assert.ok($button instanceof $, 'returns jquery collection')
     assert.strictEqual($button[0], $el[0], 'collection contains element')
   })
@@ -38,6 +39,7 @@ $(function () {
   QUnit.test('should toggle active', function (assert) {
     assert.expect(2)
     var $btn = $('<button class="btn" data-toggle="button">mdo</button>')
+
     assert.ok(!$btn.hasClass('active'), 'btn does not have active class')
     $btn.bootstrapButton('toggle')
     assert.ok($btn.hasClass('active'), 'btn has class active')
@@ -47,6 +49,7 @@ $(function () {
     assert.expect(2)
     var $btn = $('<button class="btn" data-toggle="button">mdo</button>')
     var $inner = $('<i/>')
+
     $btn
       .append($inner)
       .appendTo('#qunit-fixture')
@@ -58,6 +61,7 @@ $(function () {
   QUnit.test('should toggle aria-pressed', function (assert) {
     assert.expect(2)
     var $btn = $('<button class="btn" data-toggle="button" aria-pressed="false">redux</button>')
+
     assert.strictEqual($btn.attr('aria-pressed'), 'false', 'btn aria-pressed state is false')
     $btn.bootstrapButton('toggle')
     assert.strictEqual($btn.attr('aria-pressed'), 'true', 'btn aria-pressed state is true')
@@ -69,6 +73,7 @@ $(function () {
         '<button id="btn1" class="btn btn-secondary" type="button">One</button>' +
         '<button class="btn btn-secondary" type="button">Two</button>' +
       '</div>'
+
     $('#qunit-fixture').append(groupHTML)
     $('#btn1').bootstrapButton('toggle')
     assert.strictEqual($('#btn1').attr('aria-pressed'), 'true')
@@ -78,6 +83,7 @@ $(function () {
     assert.expect(2)
     var $btn = $('<button class="btn" data-toggle="button" aria-pressed="false">redux</button>')
     var $inner = $('<i/>')
+
     $btn
       .append($inner)
       .appendTo('#qunit-fixture')

@@ -117,6 +117,7 @@ class Popover extends Tooltip {
     // we use append for html objects to maintain js events
     this.setElementContent(SelectorEngine.findOne(Selector.TITLE, tip), this.getTitle())
     let content = this._getContent()
+
     if (typeof content === 'function') {
       content = content.call(this.element)
     }
@@ -183,6 +184,7 @@ class Popover extends Tooltip {
 
 if (typeof $ !== 'undefined') {
   const JQUERY_NO_CONFLICT = $.fn[NAME]
+
   $.fn[NAME] = Popover._jQueryInterface
   $.fn[NAME].Constructor = Popover
   $.fn[NAME].noConflict = () => {

@@ -85,6 +85,7 @@ class Collapse {
     ))
 
     const toggleList = makeArray(SelectorEngine.find(Selector.DATA_TOGGLE))
+
     for (let i = 0, len = toggleList.length; i < len; i++) {
       const elem = toggleList[i]
       const selector = getSelectorFromElement(elem)
@@ -137,6 +138,7 @@ class Collapse {
     }
 
     let actives
+
     let activesData
 
     if (this._parent) {
@@ -155,8 +157,10 @@ class Collapse {
     }
 
     const container = SelectorEngine.findOne(this._selector)
+
     if (actives) {
       const tempActiveData = actives.filter(elem => container !== elem)
+
       activesData = tempActiveData[0] ? Data.getData(tempActiveData[0], DATA_KEY) : null
 
       if (activesData && activesData._isTransitioning) {
@@ -165,6 +169,7 @@ class Collapse {
     }
 
     const startEvent = EventHandler.trigger(this._element, Event.SHOW)
+
     if (startEvent.defaultPrevented) {
       return
     }
@@ -226,6 +231,7 @@ class Collapse {
     }
 
     const startEvent = EventHandler.trigger(this._element, Event.HIDE)
+
     if (startEvent.defaultPrevented) {
       return
     }
@@ -241,6 +247,7 @@ class Collapse {
     this._element.classList.remove(ClassName.SHOW)
 
     const triggerArrayLength = this._triggerArray.length
+
     if (triggerArrayLength > 0) {
       for (let i = 0; i < triggerArrayLength; i++) {
         const trigger = this._triggerArray[i]
@@ -301,6 +308,7 @@ class Collapse {
 
   _getDimension() {
     const hasWidth = this._element.classList.contains(Dimension.WIDTH)
+
     return hasWidth ? Dimension.WIDTH : Dimension.HEIGHT
   }
 
@@ -351,6 +359,7 @@ class Collapse {
 
   static _getTargetFromElement(element) {
     const selector = getSelectorFromElement(element)
+
     return selector ? SelectorEngine.findOne(selector) : null
   }
 
@@ -408,7 +417,9 @@ EventHandler.on(document, Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (
 
   selectorElements.forEach(element => {
     const data = Data.getData(element, DATA_KEY)
+
     let config
+
     if (data) {
       // update parent attribute
       if (data._parent === null && typeof triggerData.parent === 'string') {
@@ -434,6 +445,7 @@ EventHandler.on(document, Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (
 
 if (typeof $ !== 'undefined') {
   const JQUERY_NO_CONFLICT = $.fn[NAME]
+
   $.fn[NAME] = Collapse._jQueryInterface
   $.fn[NAME].Constructor = Collapse
   $.fn[NAME].noConflict = () => {

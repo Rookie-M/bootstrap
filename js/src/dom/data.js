@@ -13,7 +13,9 @@
 
 const mapData = (() => {
   const storeData = {}
+
   let id = 1
+
   return {
     set(element, key, data) {
       if (typeof element.key === 'undefined') {
@@ -32,6 +34,7 @@ const mapData = (() => {
       }
 
       const keyProperties = element.key
+
       if (keyProperties.key === key) {
         return storeData[keyProperties.id]
       }
@@ -44,6 +47,7 @@ const mapData = (() => {
       }
 
       const keyProperties = element.key
+
       if (keyProperties.key === key) {
         delete storeData[keyProperties.id]
         delete element.key

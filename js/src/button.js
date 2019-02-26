@@ -66,6 +66,7 @@ class Button {
 
   toggle() {
     let triggerChangeEvent = true
+
     let addAriaPressed = true
 
     const rootElement = SelectorEngine.closest(
@@ -153,11 +154,13 @@ EventHandler.on(document, Event.CLICK_DATA_API, Selector.DATA_TOGGLE_CARROT, eve
   event.preventDefault()
 
   let button = event.target
+
   if (!button.classList.contains(ClassName.BUTTON)) {
     button = SelectorEngine.closest(button, Selector.BUTTON)
   }
 
   let data = Data.getData(button, DATA_KEY)
+
   if (!data) {
     data = new Button(button)
     Data.setData(button, DATA_KEY, data)
@@ -168,11 +171,13 @@ EventHandler.on(document, Event.CLICK_DATA_API, Selector.DATA_TOGGLE_CARROT, eve
 
 EventHandler.on(document, Event.FOCUS_DATA_API, Selector.DATA_TOGGLE_CARROT, event => {
   const button = SelectorEngine.closest(event.target, Selector.BUTTON)
+
   button.classList.add(ClassName.FOCUS)
 })
 
 EventHandler.on(document, Event.BLUR_DATA_API, Selector.DATA_TOGGLE_CARROT, event => {
   const button = SelectorEngine.closest(event.target, Selector.BUTTON)
+
   button.classList.remove(ClassName.FOCUS)
 })
 
@@ -185,6 +190,7 @@ EventHandler.on(document, Event.BLUR_DATA_API, Selector.DATA_TOGGLE_CARROT, even
 
 if (typeof $ !== 'undefined') {
   const JQUERY_NO_CONFLICT = $.fn[NAME]
+
   $.fn[NAME] = Button._jQueryInterface
   $.fn[NAME].Constructor = Button
 

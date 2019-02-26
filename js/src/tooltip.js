@@ -205,6 +205,7 @@ class Tooltip {
 
     if (event) {
       const dataKey = this.constructor.DATA_KEY
+
       let context = Data.getData(event.delegateTarget, dataKey)
 
       if (!context) {
@@ -291,9 +292,11 @@ class Tooltip {
         this.config.placement
 
       const attachment = this._getAttachment(placement)
+
       this.addAttachmentClass(attachment)
 
       const container = this._getContainer()
+
       Data.setData(tip, this.constructor.DATA_KEY, this)
 
       if (!this.element.ownerDocument.documentElement.contains(this.tip)) {
@@ -342,6 +345,7 @@ class Tooltip {
         }
 
         const prevHoverState = this._hoverState
+
         this._hoverState = null
 
         EventHandler.trigger(this.element, this.constructor.Event.SHOWN)
@@ -353,6 +357,7 @@ class Tooltip {
 
       if (this.tip.classList.contains(ClassName.FADE)) {
         const transitionDuration = getTransitionDurationFromElement(this.tip)
+
         EventHandler.one(this.tip, TRANSITION_END, complete)
         emulateTransitionEnd(this.tip, transitionDuration)
       } else {
@@ -381,6 +386,7 @@ class Tooltip {
     }
 
     const hideEvent = EventHandler.trigger(this.element, this.constructor.Event.HIDE)
+
     if (hideEvent.defaultPrevented) {
       return
     }
@@ -432,6 +438,7 @@ class Tooltip {
     }
 
     const element = document.createElement('div')
+
     element.innerHTML = this.config.template
 
     this.tip = element.children[0]
@@ -440,6 +447,7 @@ class Tooltip {
 
   setContent() {
     const tip = this.getTipElement()
+
     this.setElementContent(SelectorEngine.findOne(Selector.TOOLTIP_INNER, tip), this.getTitle())
     tip.classList.remove(ClassName.FADE)
     tip.classList.remove(ClassName.SHOW)
@@ -594,6 +602,7 @@ class Tooltip {
 
   _enter(event, context) {
     const dataKey = this.constructor.DATA_KEY
+
     context = context || Data.getData(event.delegateTarget, dataKey)
 
     if (!context) {
@@ -634,6 +643,7 @@ class Tooltip {
 
   _leave(event, context) {
     const dataKey = this.constructor.DATA_KEY
+
     context = context || Data.getData(event.delegateTarget, dataKey)
 
     if (!context) {
@@ -745,6 +755,7 @@ class Tooltip {
   _cleanTipClass() {
     const tip = this.getTipElement()
     const tabClass = tip.getAttribute('class').match(BSCLS_PREFIX_REGEX)
+
     if (tabClass !== null && tabClass.length) {
       tabClass
         .map(token => token.trim())
@@ -754,6 +765,7 @@ class Tooltip {
 
   _handlePopperPlacementChange(popperData) {
     const popperInstance = popperData.instance
+
     this.tip = popperInstance.popper
     this._cleanTipClass()
     this.addAttachmentClass(this._getAttachment(popperData.placement))
@@ -762,6 +774,7 @@ class Tooltip {
   _fixTransition() {
     const tip = this.getTipElement()
     const initConfigAnimation = this.config.animation
+
     if (tip.getAttribute('x-placement') !== null) {
       return
     }
@@ -812,6 +825,7 @@ class Tooltip {
 
 if (typeof $ !== 'undefined') {
   const JQUERY_NO_CONFLICT = $.fn[NAME]
+
   $.fn[NAME] = Tooltip._jQueryInterface
   $.fn[NAME].Constructor = Tooltip
   $.fn[NAME].noConflict = () => {

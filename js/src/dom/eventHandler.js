@@ -21,6 +21,7 @@ const stripNameRegex = /\..*/
 const keyEventRegex = /^key/
 const stripUidRegex = /::\d+$/
 const eventRegistry = {} // Events storage
+
 let uidEvent = 1
 const customEvents = {
   mouseenter: 'mouseover',
@@ -267,6 +268,7 @@ const EventHandler = {
     }
 
     const storeElementEvent = events[typeEvent] || {}
+
     Object.keys(storeElementEvent)
       .forEach(keyHandlers => {
         const handlerKey = keyHandlers.replace(stripUidRegex, '')
@@ -289,9 +291,13 @@ const EventHandler = {
     const isNative = nativeEvents.indexOf(typeEvent) > -1
 
     let jQueryEvent
+
     let bubbles = true
+
     let nativeDispatch = true
+
     let defaultPrevented = false
+
     let evt = null
 
     if (inNamespace && typeof $ !== 'undefined') {

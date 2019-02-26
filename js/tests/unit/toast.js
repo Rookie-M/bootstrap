@@ -37,6 +37,7 @@ $(function () {
   QUnit.test('should throw explicit error on undefined method', function (assert) {
     assert.expect(1)
     var $el = $('<div/>')
+
     $el.bootstrapToast()
 
     try {
@@ -51,6 +52,7 @@ $(function () {
 
     var $el = $('<div/>')
     var $toast = $el.bootstrapToast()
+
     assert.ok($toast instanceof $, 'returns jquery collection')
     assert.strictEqual($toast[0], $el[0], 'collection contains element')
   })
@@ -227,6 +229,7 @@ $(function () {
       .on('shown.bs.toast', function () {
         assert.strictEqual($toast.hasClass('show'), true)
         var button = $toast.find('.close')
+
         button.trigger('click')
       })
       .on('hidden.bs.toast', function () {
@@ -240,6 +243,7 @@ $(function () {
     assert.expect(1)
 
     var defaultDelay = 1000
+
     Toast.Default.delay = defaultDelay
 
     var toastHtml =
@@ -253,6 +257,7 @@ $(function () {
       .bootstrapToast()
 
     var toast = Toast._getInstance($toast[0])
+
     assert.strictEqual(toast._config.delay, defaultDelay)
   })
 })

@@ -102,6 +102,7 @@ function getConfigByPluginKey(pluginKey) {
     pluginKey === 'ScrollSpy'
   ) {
     const config = Object.assign(defaultPluginConfig)
+
     config.external.push(bsPlugins.Manipulator)
     config.globals[bsPlugins.Manipulator] = 'Manipulator'
     return config
@@ -109,6 +110,7 @@ function getConfigByPluginKey(pluginKey) {
 
   if (pluginKey === 'Dropdown' || pluginKey === 'Tooltip') {
     const config = Object.assign(defaultPluginConfig)
+
     config.external.push(bsPlugins.Manipulator, 'popper.js')
     config.globals[bsPlugins.Manipulator] = 'Manipulator'
     config.globals['popper.js'] = 'Popper'
@@ -150,6 +152,7 @@ function build(plugin) {
   console.log(`Building ${plugin} plugin...`)
 
   const { external, globals } = getConfigByPluginKey(plugin)
+
   let pluginPath = rootPath
 
   const utilObjects = [

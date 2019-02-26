@@ -39,6 +39,7 @@ function walkAsync(directory, excludedDirectories, fileCallback, errback) {
 
     names.forEach(name => {
       const filepath = path.join(directory, name)
+
       fs.lstat(filepath, (err, stats) => {
         if (err) {
           process.nextTick(errback, err)
@@ -103,6 +104,7 @@ function main(args) {
     '.txt',
     '.yml'
   ])
+
   replaceRecursively('.', EXCLUDED_DIRS, INCLUDED_EXTENSIONS, oldVersion, newVersion)
 }
 

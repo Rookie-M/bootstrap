@@ -11,10 +11,12 @@ $(function () {
     assert.expect(2)
 
     var $el = $('<div data-target="body"></div>').appendTo($('#qunit-fixture'))
+
     assert.strictEqual(Util.getSelectorFromElement($el[0]), 'body')
 
     // Not found element
     var $el2 = $('<div data-target="#fakeDiv"></div>').appendTo($('#qunit-fixture'))
+
     assert.strictEqual(Util.getSelectorFromElement($el2[0]), null)
   })
 
@@ -139,6 +141,7 @@ $(function () {
     assert.expect(1)
 
     var $div = $('<div id="test"></div>').appendTo($('#qunit-fixture'))
+
     if (document.documentElement.attachShadow) {
       var sandbox = sinon.createSandbox()
 

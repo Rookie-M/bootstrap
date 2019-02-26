@@ -31,6 +31,7 @@ $(function () {
     assert.expect(2)
     var $el = $('<div/>')
     var $alert = $el.bootstrapAlert()
+
     assert.ok($alert instanceof $, 'returns jquery collection')
     assert.strictEqual($alert[0], $el[0], 'collection contains element')
   })
@@ -45,6 +46,7 @@ $(function () {
     var $alert = $(alertHTML).bootstrapAlert().appendTo($('#qunit-fixture'))
 
     var closeBtn = $alert.find('.close')[0]
+
     closeBtn.dispatchEvent(new Event('click'))
     assert.strictEqual($alert.hasClass('show'), false, 'remove .show class on .close click')
   })
@@ -66,6 +68,7 @@ $(function () {
     })
 
     var closeBtn = $alert.find('.close')[0]
+
     closeBtn.dispatchEvent(new Event('click'))
   })
 
@@ -73,6 +76,7 @@ $(function () {
     assert.expect(1)
     var done = assert.async()
     var $alert = $('<div class="alert"/>')
+
     $alert.appendTo('#qunit-fixture')
 
     $alert[0].addEventListener('close.bs.alert', function (e) {

@@ -12,6 +12,7 @@ $(function () {
     assert.expect(1)
 
     var element = document.createElement('div')
+
     element.addEventListener('foobar', function () {
       assert.ok(true, 'listener called')
     })
@@ -23,6 +24,7 @@ $(function () {
     assert.expect(1)
 
     var element = document.createElement('div')
+
     $(element).on('foobar', function () {
       assert.ok(true, 'listener called')
     })
@@ -34,6 +36,7 @@ $(function () {
     assert.expect(2)
 
     var element = document.createElement('div')
+
     $(element).on('foobar.namespace', function () {
       assert.ok(true, 'first listener called')
     })
@@ -48,6 +51,7 @@ $(function () {
     assert.expect(2)
 
     var element = document.createElement('div')
+
     $(element).on('foobar.namespace', function (event) {
       event.preventDefault()
       assert.ok(true, 'first listener called')
@@ -63,6 +67,7 @@ $(function () {
     assert.expect(2)
 
     var element = document.createElement('div')
+
     document.body.appendChild(element)
 
     $(element).on('click', function (event) {
@@ -81,6 +86,7 @@ $(function () {
     assert.expect(1)
 
     var element = document.createElement('div')
+
     EventHandler.on(element, 'foobar', function () {
       assert.ok(true, 'listener called')
     })
@@ -92,6 +98,7 @@ $(function () {
     assert.expect(1)
 
     var element = document.createElement('div')
+
     EventHandler.on(element, 'foobar.namespace', function () {
       assert.ok(true, 'listener called')
     })
@@ -103,6 +110,7 @@ $(function () {
     assert.expect(1)
 
     var element = document.createElement('div')
+
     document.body.appendChild(element)
     EventHandler.on(element, 'click.namespace', function () {
       assert.ok(true, 'listener called')
@@ -117,9 +125,11 @@ $(function () {
 
     var element = document.createElement('div')
     var subelement = document.createElement('span')
+
     element.appendChild(subelement)
 
     var anchor = document.createElement('a')
+
     element.appendChild(anchor)
 
     EventHandler.on(element, 'click.namespace', 'a', function () {
@@ -140,9 +150,11 @@ $(function () {
 
     var element = document.createElement('div')
     var subelement = document.createElement('span')
+
     element.appendChild(subelement)
 
     var anchor = document.createElement('a')
+
     element.appendChild(anchor)
 
     var i = 0
@@ -165,6 +177,7 @@ $(function () {
     assert.expect(1)
 
     var element = document.createElement('div')
+
     EventHandler.one(element, 'foobar', function () {
       assert.ok(true, 'listener called')
     })
@@ -247,6 +260,7 @@ $(function () {
     assert.expect(2)
 
     var element = document.createElement('div')
+
     document.body.appendChild(element)
 
     EventHandler.on(element, 'click.namespace', function () {
@@ -266,6 +280,7 @@ $(function () {
     assert.expect(3)
 
     var element = document.createElement('div')
+
     document.body.appendChild(element)
 
     EventHandler.on(element, 'click.namespace', function () {
@@ -300,9 +315,11 @@ $(function () {
 
     var element = document.createElement('div')
     var subelement = document.createElement('span')
+
     element.appendChild(subelement)
 
     var anchor = document.createElement('a')
+
     element.appendChild(anchor)
 
     var i = 0

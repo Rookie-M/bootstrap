@@ -57,6 +57,7 @@ const SelectorEngine = {
     }
 
     const parents = []
+
     let ancestor = element.parentNode
 
     while (ancestor && ancestor.nodeType === Node.ELEMENT_NODE && ancestor.nodeType !== NODE_TEXT) {
@@ -84,6 +85,7 @@ const SelectorEngine = {
     }
 
     const siblings = []
+
     let previous = element.previousSibling
 
     while (previous && previous.nodeType === Node.ELEMENT_NODE && previous.nodeType !== NODE_TEXT) {

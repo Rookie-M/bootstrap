@@ -15,6 +15,7 @@ $(function () {
     var data = {
       test: 'bsData'
     }
+
     Data.setData($div[0], 'test', data)
 
     assert.ok($div[0].key, 'element have a data key')
@@ -27,6 +28,7 @@ $(function () {
     var data = {
       test: 'bsData'
     }
+
     Data.setData($div[0], 'test', data)
 
     assert.strictEqual(Data.getData($div[0], 'test'), data)
@@ -41,6 +43,7 @@ $(function () {
     assert.expect(1)
 
     var $div = $('<div />').appendTo('#qunit-fixture')
+
     $div[0].key = {
       key: 'test2',
       data: 'woot woot'
@@ -56,6 +59,7 @@ $(function () {
     var data = {
       test: 'bsData'
     }
+
     Data.setData($div[0], 'test', data)
     assert.ok(Data.getData($div[0], 'test') !== null)
 
@@ -73,6 +77,7 @@ $(function () {
     assert.expect(0)
 
     var $div = $('<div />').appendTo('#qunit-fixture')
+
     $div[0].key = {
       key: 'test2',
       data: 'woot woot'

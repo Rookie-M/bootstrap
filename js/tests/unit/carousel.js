@@ -4,6 +4,7 @@ $(function () {
   window.Carousel = typeof bootstrap === 'undefined' ? Carousel : bootstrap.Carousel
 
   var originWinPointerEvent = window.PointerEvent
+
   window.MSPointerEvent = null
   var supportPointerEvent = Boolean(window.PointerEvent || window.MSPointerEvent)
 
@@ -63,6 +64,7 @@ $(function () {
   QUnit.test('should throw explicit error on undefined method', function (assert) {
     assert.expect(1)
     var $el = $('<div/>')
+
     $el.bootstrapCarousel()
     try {
       $el.bootstrapCarousel('noMethod')
@@ -75,6 +77,7 @@ $(function () {
     assert.expect(2)
     var $el = $('<div/>')
     var $carousel = $el.bootstrapCarousel()
+
     assert.ok($carousel instanceof $, 'returns jquery collection')
     assert.strictEqual($carousel[0], $el[0], 'collection contains element')
   })
@@ -114,6 +117,7 @@ $(function () {
     assert.expect(1)
     var done = assert.async()
     var $carousel = $('<div class="carousel"/>')
+
     $carousel.appendTo('#qunit-fixture')
 
     $carousel[0].addEventListener('slide.bs.carousel', function (e) {
@@ -150,9 +154,11 @@ $(function () {
         '<a class="right carousel-control" href="#carousel-example-generic" data-slide="next"/>' +
         '</div>'
     var $carousel = $(carouselHTML)
+
     $carousel.appendTo('#qunit-fixture')
 
     var done = assert.async()
+
     function onSlide(e) {
       e.preventDefault()
       setTimeout(function () {
@@ -217,6 +223,7 @@ $(function () {
         '<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>' +
         '</div>'
     var $carousel = $(carouselHTML)
+
     $carousel.appendTo('#qunit-fixture')
 
     var done = assert.async()
@@ -276,6 +283,7 @@ $(function () {
         '<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>' +
         '</div>'
     var $carousel = $(carouselHTML)
+
     $carousel.appendTo('#qunit-fixture')
 
     var done = assert.async()
@@ -338,6 +346,7 @@ $(function () {
 
     var done = assert.async()
     var $carousel = $(template)
+
     $carousel.appendTo('#qunit-fixture')
 
     function onSlide(e) {
@@ -389,6 +398,7 @@ $(function () {
 
     var done = assert.async()
     var $carousel = $(template)
+
     $carousel.appendTo('#qunit-fixture')
 
     $carousel[0].addEventListener('slid.bs.carousel', function (e) {
@@ -480,6 +490,7 @@ $(function () {
         '<a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>' +
         '</div>'
     var $carousel = $(templateHTML)
+
     $carousel.attr('data-interval', 1814)
 
     $carousel.appendTo('body')
@@ -545,8 +556,10 @@ $(function () {
         '</div>'
 
     var $carousel = $(templateHTML).appendTo('#qunit-fixture')
+
     $carousel.bootstrapCarousel(1)
     var carousel = Carousel._getInstance($carousel[0])
+
     assert.strictEqual(carousel._config.interval, 3814)
     carousel.dispose()
     $carousel.remove()
@@ -633,6 +646,7 @@ $(function () {
     assert.strictEqual($template.find('.carousel-item')[1], $template.find('.active')[0], 'second item active')
 
     var keyDown = new Event('keydown')
+
     keyDown.which = 37
     $template[0].dispatchEvent(keyDown)
 
@@ -661,6 +675,7 @@ $(function () {
     assert.strictEqual($template.find('.carousel-item')[0], $template.find('.active')[0], 'first item active')
 
     var keyDown = new Event('keydown')
+
     keyDown.which = 39
     $template[0].dispatchEvent(keyDown)
 
@@ -690,6 +705,7 @@ $(function () {
 
     // arrow down
     var keyDown = new Event('keydown')
+
     keyDown.which = 40
     $template[0].dispatchEvent(keyDown)
 
@@ -703,6 +719,7 @@ $(function () {
 
     // arrow up
     var keyDown2 = new Event('keydown')
+
     keyDown2.which = 38
     $template[0].dispatchEvent(keyDown2)
   })
@@ -820,6 +837,7 @@ $(function () {
 
     $carousel[0].addEventListener('slid.bs.carousel', function () {
       var activeId = getActiveId()
+
       if (activeId === 'two') {
         assert.strictEqual(activeId, 'two', 'carousel slid from 1st to 2nd slide')
         $carousel.bootstrapCarousel('next')
@@ -901,8 +919,10 @@ $(function () {
     }
 
     var done = assert.async()
+
     $carousel[0].addEventListener('slid.bs.carousel', function () {
       var activeId = getActiveId()
+
       if (activeId === 'two') {
         assert.strictEqual(activeId, 'two', 'carousel slid from 1st to 2nd slide')
         $carousel.bootstrapCarousel('next')
@@ -964,14 +984,17 @@ $(function () {
         '</div>'
     var $template = $(templateHTML)
     var done = assert.async()
+
     $template.appendTo('#qunit-fixture')
     var $inputText = $template.find('#inputText')
     var $textArea = $template.find('#txtArea')
+
     $template.bootstrapCarousel()
 
     var eventKeyDown = $.Event('keydown', {
       which: 65
     }) // 65 for "a"
+
     $inputText.on('keydown', function (event) {
       assert.strictEqual(event.isDefaultPrevented(), false)
     })
@@ -1002,11 +1025,13 @@ $(function () {
              '  <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>' +
              '</div>'
     var $html = $(html)
+
     $html
       .appendTo('#qunit-fixture')
       .bootstrapCarousel()
 
     var $firstItem = $('#firstItem')
+
     setTimeout(function () {
       assert.ok($firstItem.hasClass('active'))
       $html
@@ -1041,9 +1066,11 @@ $(function () {
              '  </div>' +
              '</div>'
     var $html = $(html)
+
     $html.appendTo('#qunit-fixture')
     var $parent = $html.find('#parent')
     var $carousel = $html.find('#myCarousel')
+
     $carousel.bootstrapCarousel()
     var $firstItem = $('#firstItem')
 
@@ -1086,6 +1113,7 @@ $(function () {
 
     var $carousel = $(carouselHTML).appendTo('#qunit-fixture')
     var $item = $('#item')
+
     $carousel.bootstrapCarousel()
     var carousel = Carousel._getInstance($carousel[0])
     var spy = sinon.spy(carousel, 'prev')
@@ -1111,6 +1139,7 @@ $(function () {
 
     assert.expect(3)
     var done = assert.async()
+
     document.documentElement.ontouchstart = $.noop
 
     var carouselHTML =
@@ -1126,8 +1155,10 @@ $(function () {
         '</div>'
 
     var $carousel = $(carouselHTML)
+
     $carousel.appendTo('#qunit-fixture')
     var $item = $('#item')
+
     $carousel.bootstrapCarousel()
     var carousel = Carousel._getInstance($carousel[0])
     var spy = sinon.spy(carousel, 'prev')
@@ -1173,8 +1204,10 @@ $(function () {
         '</div>'
 
     var $carousel = $(carouselHTML)
+
     $carousel.appendTo('#qunit-fixture')
     var $item = $('#item')
+
     $carousel.bootstrapCarousel()
     var carousel = Carousel._getInstance($carousel[0])
     var spy = sinon.spy(carousel, 'next')
@@ -1216,8 +1249,10 @@ $(function () {
         '</div>'
 
     var $carousel = $(carouselHTML)
+
     $carousel.appendTo('#qunit-fixture')
     var $item = $('#item')
+
     $carousel.bootstrapCarousel()
     var carousel = Carousel._getInstance($carousel[0])
     var spy = sinon.spy(carousel, 'next')
@@ -1244,10 +1279,12 @@ $(function () {
 
     Simulator.setType('touch')
     var done = assert.async()
+
     document.documentElement.ontouchstart = $.noop
 
     var carouselHTML = '<div class="carousel" data-interval="false"></div>'
     var $carousel = $(carouselHTML)
+
     $carousel.appendTo('#qunit-fixture')
     $carousel.bootstrapCarousel()
 
@@ -1268,6 +1305,7 @@ $(function () {
 
     var carouselHTML = '<div class="carousel" data-interval="false"></div>'
     var $carousel = $(carouselHTML)
+
     $carousel.appendTo('#qunit-fixture')
     $carousel.bootstrapCarousel()
 
@@ -1287,6 +1325,7 @@ $(function () {
 
     var carouselHTML = '<div class="carousel" data-interval="false"></div>'
     var $carousel = $(carouselHTML)
+
     $carousel.appendTo('#qunit-fixture')
     $carousel.bootstrapCarousel()
 
@@ -1314,6 +1353,7 @@ $(function () {
 
     var carouselHTML = '<div class="carousel"></div>'
     var $carousel = $(carouselHTML)
+
     $carousel.appendTo('#qunit-fixture')
     $carousel.bootstrapCarousel()
 
@@ -1328,6 +1368,7 @@ $(function () {
 
     var carouselHTML = '<div class="carousel" data-ride="carousel"></div>'
     var $carousel = $(carouselHTML)
+
     $carousel.appendTo('#qunit-fixture')
     $carousel.bootstrapCarousel()
 
@@ -1343,6 +1384,7 @@ $(function () {
 
     var carouselHTML = '<div class="carousel" data-ride="carousel"></div>'
     var $carousel = $(carouselHTML)
+
     $carousel.appendTo('#qunit-fixture')
 
     window.dispatchEvent(new Event('load'))

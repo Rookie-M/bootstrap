@@ -18,6 +18,7 @@ const Polyfill = (() => {
     })
 
     const element = document.createElement('div')
+
     element.addEventListener('Bootstrap', () => null)
 
     e.preventDefault()
@@ -26,6 +27,7 @@ const Polyfill = (() => {
   })()
 
   let find = Element.prototype.querySelectorAll
+
   let findOne = Element.prototype.querySelector
 
   const scopeSelectorRegex = /:scope\b/
@@ -54,6 +56,7 @@ const Polyfill = (() => {
       }
 
       let nodeList = null
+
       try {
         selector = selector.replace(scopeSelectorRegex, `#${this.id}`)
         nodeList = this.querySelectorAll(selector)

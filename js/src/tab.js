@@ -86,12 +86,14 @@ class Tab {
     }
 
     let target
+
     let previous
     const listElement = SelectorEngine.closest(this._element, Selector.NAV_LIST_GROUP)
     const selector = getSelectorFromElement(this._element)
 
     if (listElement) {
       const itemSelector = listElement.nodeName === 'UL' || listElement.nodeName === 'OL' ? Selector.ACTIVE_UL : Selector.ACTIVE
+
       previous = makeArray(SelectorEngine.find(itemSelector, listElement))
       previous = previous[previous.length - 1]
     }
@@ -162,6 +164,7 @@ class Tab {
 
     if (active && isTransitioning) {
       const transitionDuration = getTransitionDurationFromElement(active)
+
       active.classList.remove(ClassName.SHOW)
 
       EventHandler.one(active, TRANSITION_END, complete)
@@ -244,6 +247,7 @@ EventHandler.on(document, Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (
   event.preventDefault()
 
   const data = Data.getData(this, DATA_KEY) || new Tab(this)
+
   data.show()
 })
 
@@ -256,6 +260,7 @@ EventHandler.on(document, Event.CLICK_DATA_API, Selector.DATA_TOGGLE, function (
 
 if (typeof $ !== 'undefined') {
   const JQUERY_NO_CONFLICT = $.fn[NAME]
+
   $.fn[NAME] = Tab._jQueryInterface
   $.fn[NAME].Constructor = Tab
   $.fn[NAME].noConflict = () => {

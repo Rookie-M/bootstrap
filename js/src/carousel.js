@@ -408,6 +408,7 @@ class Carousel {
   _setActiveIndicatorElement(element) {
     if (this._indicatorsElement) {
       const indicators = SelectorEngine.find(Selector.ACTIVE, this._indicatorsElement)
+
       for (let i = 0; i < indicators.length; i++) {
         indicators[i].classList.remove(ClassName.ACTIVE)
       }
@@ -432,7 +433,9 @@ class Carousel {
     const isCycling = Boolean(this._interval)
 
     let directionalClassName
+
     let orderClassName
+
     let eventDirectionName
 
     if (direction === Direction.NEXT) {
@@ -451,6 +454,7 @@ class Carousel {
     }
 
     const slideEvent = this._triggerSlideEvent(nextElement, eventDirectionName)
+
     if (slideEvent.defaultPrevented) {
       return
     }
@@ -477,6 +481,7 @@ class Carousel {
       nextElement.classList.add(directionalClassName)
 
       const nextElementInterval = parseInt(nextElement.getAttribute('data-interval'), 10)
+
       if (nextElementInterval) {
         this._config.defaultInterval = this._config.defaultInterval || this._config.interval
         this._config.interval = nextElementInterval
@@ -531,6 +536,7 @@ class Carousel {
 
   static _carouselInterface(element, config) {
     let data = Data.getData(element, DATA_KEY)
+
     let _config = {
       ...Default,
       ...Manipulator.getDataAttributes(element)
@@ -617,6 +623,7 @@ EventHandler
 
 EventHandler.on(window, Event.LOAD_DATA_API, () => {
   const carousels = makeArray(SelectorEngine.find(Selector.DATA_RIDE))
+
   for (let i = 0, len = carousels.length; i < len; i++) {
     Carousel._carouselInterface(carousels[i], Data.getData(carousels[i], DATA_KEY))
   }
@@ -631,6 +638,7 @@ EventHandler.on(window, Event.LOAD_DATA_API, () => {
 
 if (typeof $ !== 'undefined') {
   const JQUERY_NO_CONFLICT = $.fn[NAME]
+
   $.fn[NAME] = Carousel._jQueryInterface
   $.fn[NAME].Constructor = Carousel
   $.fn[NAME].noConflict = () => {
