@@ -1,7 +1,7 @@
 $(function () {
   'use strict'
 
-  var Collapse = typeof window.bootstrap !== 'undefined' ? window.bootstrap.Collapse : window.Collapse
+  var Collapse = typeof window.bootstrap === 'undefined' ? window.Collapse : window.bootstrap.Collapse
 
   QUnit.module('collapse plugin')
 
@@ -33,8 +33,8 @@ $(function () {
     $el.bootstrapCollapse()
     try {
       $el.bootstrapCollapse('noMethod')
-    } catch (err) {
-      assert.strictEqual(err.message, 'No method named "noMethod"')
+    } catch (error) {
+      assert.strictEqual(error.message, 'No method named "noMethod"')
     }
   })
 
@@ -838,7 +838,7 @@ $(function () {
         parent: $('.my-collapse')
       })
       assert.ok(true, 'collapse correctly created')
-    } catch (err) {
+    } catch (error) {
       assert.ok(false, 'collapse not created')
     }
   })
@@ -859,7 +859,7 @@ $(function () {
         parent: $('.my-collapse')[0]
       })
       assert.ok(true, 'collapse correctly created')
-    } catch (err) {
+    } catch (error) {
       assert.ok(false, 'collapse not created')
     }
   })

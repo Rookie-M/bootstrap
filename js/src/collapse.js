@@ -318,8 +318,7 @@ class Collapse {
       parent = SelectorEngine.findOne(this._config.parent)
     }
 
-    const selector =
-      `[data-toggle="collapse"][data-parent="${this._config.parent}"]`
+    const selector = `[data-toggle="collapse"][data-parent="${parent}"]`
 
     makeArray(SelectorEngine.find(selector, parent))
       .forEach(element => {
@@ -338,10 +337,10 @@ class Collapse {
 
       if (triggerArray.length) {
         triggerArray.forEach(elem => {
-          if (!isOpen) {
-            elem.classList.add(ClassName.COLLAPSED)
-          } else {
+          if (isOpen) {
             elem.classList.remove(ClassName.COLLAPSED)
+          } else {
+            elem.classList.add(ClassName.COLLAPSED)
           }
 
           elem.setAttribute('aria-expanded', isOpen)
@@ -375,7 +374,7 @@ class Collapse {
 
     if (typeof config === 'string') {
       if (typeof data[config] === 'undefined') {
-        throw new Error(`No method named "${config}"`)
+        throw new TypeError(`No method named "${config}"`)
       }
 
       data[config]()

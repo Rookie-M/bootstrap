@@ -1,7 +1,7 @@
 $(function () {
   'use strict'
 
-  window.Carousel = typeof bootstrap !== 'undefined' ? bootstrap.Carousel : Carousel
+  window.Carousel = typeof bootstrap === 'undefined' ? Carousel : bootstrap.Carousel
 
   var originWinPointerEvent = window.PointerEvent
   window.MSPointerEvent = null
@@ -66,8 +66,8 @@ $(function () {
     $el.bootstrapCarousel()
     try {
       $el.bootstrapCarousel('noMethod')
-    } catch (err) {
-      assert.strictEqual(err.message, 'No method named "noMethod"')
+    } catch (error) {
+      assert.strictEqual(error.message, 'No method named "noMethod"')
     }
   })
 
@@ -90,8 +90,8 @@ $(function () {
 
     try {
       $('<div/>').bootstrapCarousel(config)
-    } catch (err) {
-      message = err.message
+    } catch (error) {
+      message = error.message
     }
 
     assert.ok(message === expectedMessage, 'correct error message')
@@ -103,8 +103,8 @@ $(function () {
 
     try {
       $('<div/>').bootstrapCarousel(config)
-    } catch (err) {
-      message = err.message
+    } catch (error) {
+      message = error.message
     }
 
     assert.ok(message === expectedMessage, 'correct error message')

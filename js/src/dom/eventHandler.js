@@ -95,7 +95,7 @@ function getEvent(element) {
 function fixEvent(event, element) {
   // Add which for key events
   if (event.which === null && keyEventRegex.test(event.type)) {
-    event.which = event.charCode !== null ? event.charCode : event.keyCode
+    event.which = event.charCode === null ? event.keyCode : event.charCode
   }
 
   event.delegateTarget = element
@@ -193,7 +193,7 @@ function addHandler(element, originalTypeEvent, handler, delegationFn, oneOff) {
   }
 
   const uid = getUidEvent(originalHandler, originalTypeEvent.replace(namespaceRegex, ''))
-  const fn = !delegation ? bootstrapHandler(element, handler) : bootstrapDelegationHandler(element, handler, delegationFn)
+  const fn = delegation ? bootstrapDelegationHandler(element, handler, delegationFn) : bootstrapHandler(element, handler)
 
   fn.delegationSelector = delegation ? handler : null
   fn.originalHandler = originalHandler

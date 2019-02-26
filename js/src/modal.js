@@ -502,11 +502,11 @@ class Modal {
 
     // Restore body padding
     const padding = Manipulator.getDataAttribute(document.body, 'padding-right')
-    if (typeof padding !== 'undefined') {
+    if (typeof padding === 'undefined') {
+      document.body.style.paddingRight = ''
+    } else {
       Manipulator.removeDataAttribute(document.body, 'padding-right')
       document.body.style.paddingRight = padding
-    } else {
-      document.body.style.paddingRight = ''
     }
   }
 

@@ -267,9 +267,9 @@ class Tooltip {
     if (this.isWithContent() && this._isEnabled) {
       const showEvent = EventHandler.trigger(this.element, this.constructor.Event.SHOW)
       const shadowRoot = findShadowRoot(this.element)
-      const isInTheDom = shadowRoot !== null ?
-        shadowRoot.contains(this.element) :
-        this.element.ownerDocument.documentElement.contains(this.element)
+      const isInTheDom = shadowRoot === null ?
+        this.element.ownerDocument.documentElement.contains(this.element) :
+        shadowRoot.contains(this.element)
 
       if (showEvent.defaultPrevented || !isInTheDom) {
         return

@@ -1,8 +1,8 @@
 $(function () {
   'use strict'
 
-  window.Util = typeof bootstrap !== 'undefined' ? bootstrap.Util : Util
-  var Modal = typeof window.bootstrap !== 'undefined' ? window.bootstrap.Modal : window.Modal
+  window.Util = typeof bootstrap === 'undefined' ? Util : bootstrap.Util
+  var Modal = typeof window.bootstrap === 'undefined' ? window.Modal : window.bootstrap.Modal
 
   QUnit.module('modal plugin')
 
@@ -45,8 +45,8 @@ $(function () {
     $el.bootstrapModal()
     try {
       $el.bootstrapModal('noMethod')
-    } catch (err) {
-      assert.strictEqual(err.message, 'No method named "noMethod"')
+    } catch (error) {
+      assert.strictEqual(error.message, 'No method named "noMethod"')
     }
   })
 
